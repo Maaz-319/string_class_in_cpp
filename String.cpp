@@ -133,6 +133,18 @@ String String::upper()
     return temp;
 }
 
+String String::lower()
+{
+    String temp = *this;
+    for (int i = 0; i < temp.size; i++)
+    {
+        char c = temp.str[i];
+        if (c >= 'A' && c <= 'Z')
+            temp.str[i] = c | 32;
+    }
+    return temp;
+}
+
 void String::clear()
 {
     this->size = 0;
