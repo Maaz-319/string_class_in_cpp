@@ -172,6 +172,21 @@ String String::capitalize()
     return temp;
 }
 
+String String::reverse_case()
+{
+    String temp = *this;
+
+    for (int i = 0; i < temp.size; i++)
+    {
+        char c = temp.str[i];
+
+        if (c >= 'a' && c <= 'z') temp.str[i] &= ~32;
+        else if (c >= 'A' && c <= 'Z') temp.str[i] |= 32;
+    }
+
+    return temp;
+}
+
 void String::clear()
 {
     this->size = 0;
