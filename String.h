@@ -21,7 +21,7 @@ public:
     String operator+(const String &s);
     String operator+(const char *);
     String &operator+=(const char *);
-    String &String::operator+=(const String &);
+    String &operator+=(const String &);
 
     friend std::ostream &operator<<(std::ostream &, const String &);
 };
