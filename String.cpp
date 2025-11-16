@@ -29,7 +29,8 @@ String::~String()
 
 String &String::operator=(const String &s)
 {
-    if (this == &s) return *this;
+    if (this == &s)
+        return *this;
     this->clear();
     this->size = s.size;
     this->str = new char[this->size + 1];
@@ -57,10 +58,11 @@ String String::operator+(const String &s)
     return result;
 }
 
-String String::operator+(const char * c)
+String String::operator+(const char *c)
 {
-    if (!c) return *this;
-    
+    if (!c)
+        return *this;
+
     String result;
     int len = get_length(c);
     result.size = this->size + len;
@@ -102,4 +104,10 @@ int String::get_length(const char *c)
     for (i = 0; c[i] != '\0'; i++)
         ;
     return i;
+}
+
+std::ostream &operator<<(std::ostream &os, const String &s)
+{
+    os << s.str;
+    return os;
 }
