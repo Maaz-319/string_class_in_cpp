@@ -57,9 +57,26 @@ String String::operator+(const String &s)
     return result;
 }
 
-String String::operator+(const char *)
+String String::operator+(const char * c)
 {
-    return String();
+    if (!c) return *this;
+    
+    String result;
+    int len = get_length(c);
+    result.size = this->size + len;
+    result.str = new char[result.size + 1];
+
+    int i = 0;
+
+    for (; i < this->size; i++)
+        result.str[i] = this->str[i];
+
+    for (int j = 0; j < len; j++)
+        result.str[i++] = c[j];
+
+    result.str[result.size] = '\0';
+
+    return result;
 }
 
 void String::clear()
