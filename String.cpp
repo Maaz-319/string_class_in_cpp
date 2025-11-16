@@ -155,6 +155,23 @@ String String::reverse()
     return temp;
 }
 
+String String::capitalize()
+{
+    String temp = *this;
+    if (temp.size > 0 && temp.str[0] >= 'a' && temp.str[0] <= 'z')
+        temp.str[0] &= ~32;
+
+    for (int i = 1; i < temp.size; i++)
+    {
+        if ((temp.str[i - 1] == ' ' || temp.str[i - 1] == '\n') &&
+            (temp.str[i] >= 'a' && temp.str[i] <= 'z'))
+        {
+            temp.str[i] &= ~32;
+        }
+    }
+    return temp;
+}
+
 void String::clear()
 {
     this->size = 0;
