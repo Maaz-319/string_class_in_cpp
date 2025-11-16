@@ -7,6 +7,9 @@ class String
     int size;
     char *str;
 
+    void clear();
+    void intialize();
+    int get_length(const char *);
 public:
     String();
     String(const char *);
@@ -18,8 +21,4 @@ public:
     String operator+(const char *);
 
     friend std::ostream &operator<<(std::ostream &, const String &);
-
-    void clear();
-    void intialize();
-    int get_length(const char *);
 };
