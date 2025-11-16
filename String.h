@@ -31,7 +31,7 @@ public:
     String ltrim();
     String rtrim();
     String trim();
-    String sort(bool reverse);
+    String sort(bool reverse = false, bool skip_spaces = true);
     int len();
 
     friend std::ostream &operator<<(std::ostream &os, const String &s);

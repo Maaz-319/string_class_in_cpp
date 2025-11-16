@@ -243,6 +243,42 @@ String String::trim()
     return this->ltrim().rtrim();
 }
 
+String String::sort(bool reverse, bool skip_spaces)
+{
+    String temp = *this;
+
+    for (int i = 0; i < temp.size - 1; i++)
+    {
+        if (skip_spaces && temp.str[i] == ' ')
+            continue;
+
+        int target = i;
+
+        for (int j = i + 1; j < temp.size; j++)
+        {
+            if (skip_spaces && temp.str[j] == ' ')
+                continue;
+
+            if (!reverse)
+            {
+                if (temp.str[j] < temp.str[target])
+                    target = j;
+            }
+            else
+            {
+                if (temp.str[j] > temp.str[target])
+                    target = j;
+            }
+        }
+
+        if (target != i)
+            std::swap(temp.str[i], temp.str[target]);
+    }
+
+    return temp;
+}
+
+
 int String::len()
 {
     return this->size;
