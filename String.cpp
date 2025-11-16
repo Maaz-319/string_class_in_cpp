@@ -189,6 +189,61 @@ String String::reverse_case()
     return temp;
 }
 
+String String::ltrim()
+{
+    String temp = *this;
+
+    int i = 0;
+    while (i < temp.size && temp.str[i] == ' ')
+        i++;
+
+    int new_size = temp.size - i;
+
+    char *new_array = new char[new_size + 1];
+
+    for (int j = 0; j < new_size; j++)
+        new_array[j] = temp.str[i + j];
+
+    new_array[new_size] = '\0';
+
+    delete[] temp.str;
+    temp.str = new_array;
+    temp.size = new_size;
+
+    return temp;
+}
+
+String String::rtrim()
+{
+    String temp = *this;
+
+    int end = temp.size - 1;
+
+    while (end >= 0 && temp.str[end] == ' ')
+        end--;
+
+    int newSize = end + 1;
+
+    char* new_array = new char[newSize + 1];
+
+    for (int i = 0; i < newSize; i++)
+        new_array[i] = temp.str[i];
+
+    new_array[newSize] = '\0';
+
+    delete[] temp.str;
+    temp.str = new_array;
+    temp.size = newSize;
+
+    return temp;
+}
+
+String String::trim()
+{
+    return this->ltrim().rtrim();
+}
+
+
 void String::clear()
 {
     this->size = 0;
