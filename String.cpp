@@ -180,8 +180,10 @@ String String::reverse_case()
     {
         char c = temp.str[i];
 
-        if (c >= 'a' && c <= 'z') temp.str[i] &= ~32;
-        else if (c >= 'A' && c <= 'Z') temp.str[i] |= 32;
+        if (c >= 'a' && c <= 'z')
+            temp.str[i] &= ~32;
+        else if (c >= 'A' && c <= 'Z')
+            temp.str[i] |= 32;
     }
 
     return temp;
