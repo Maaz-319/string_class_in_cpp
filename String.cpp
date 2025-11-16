@@ -17,7 +17,8 @@ String::String(const char *c)
 
 String::String(const String &s)
 {
-    this->clear();
+    this->str = nullptr;
+    this->size = 0;
     *this = s;
 }
 
@@ -28,6 +29,7 @@ String::~String()
 
 String &String::operator=(const String &s)
 {
+    if (this == &s) return *this;
     this->clear();
     this->size = s.size;
     this->str = new char[this->size + 1];
