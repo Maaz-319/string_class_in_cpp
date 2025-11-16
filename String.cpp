@@ -243,6 +243,10 @@ String String::trim()
     return this->ltrim().rtrim();
 }
 
+int String::len()
+{
+    return this->size;
+}
 
 void String::clear()
 {
