@@ -39,7 +39,7 @@ String &String::operator=(const String &s)
     return *this;
 }
 
-String &String::operator=(const char * c)
+String &String::operator=(const char *c)
 {
     if (!c)
         return *this;
@@ -54,20 +54,8 @@ String &String::operator=(const char * c)
 
 String String::operator+(const String &s)
 {
-    String result;
-    result.size = this->size + s.size;
-    result.str = new char[result.size + 1];
-
-    int i = 0;
-
-    for (; i < this->size; i++)
-        result.str[i] = this->str[i];
-
-    for (int j = 0; j < s.size; j++)
-        result.str[i++] = s.str[j];
-
-    result.str[result.size] = '\0';
-
+    String result = *this;
+    result += s;
     return result;
 }
 
@@ -76,22 +64,61 @@ String String::operator+(const char *c)
     if (!c)
         return *this;
 
-    String result;
+    String result = *this;
+    result += c;
+    return result;
+}
+
+String &String::operator+=(const char *c)
+{
+    if (!c)
+        return *this;
+
     int len = get_length(c);
-    result.size = this->size + len;
-    result.str = new char[result.size + 1];
+    if (len == 0)
+        return *this;
 
-    int i = 0;
+    int newSize = this->size + len;
+    char *newStr = new char[newSize + 1];
 
-    for (; i < this->size; i++)
-        result.str[i] = this->str[i];
+    for (int i = 0; i < this->size; i++)
+        newStr[i] = this->str[i];
 
     for (int j = 0; j < len; j++)
-        result.str[i++] = c[j];
+        newStr[this->size + j] = c[j];
 
-    result.str[result.size] = '\0';
+    newStr[newSize] = '\0';
 
-    return result;
+    delete[] this->str;
+
+    this->str = newStr;
+    this->size = newSize;
+
+    return *this;
+}
+
+String &String::operator+=(const String &s)
+{
+    if (s.size == 0)
+        return *this;
+
+    int newSize = this->size + s.size;
+    char *newStr = new char[newSize + 1];
+
+    for (int i = 0; i < this->size; i++)
+        newStr[i] = this->str[i];
+
+    for (int j = 0; j < s.size; j++)
+        newStr[this->size + j] = s.str[j];
+
+    newStr[newSize] = '\0';
+
+    delete[] this->str;
+
+    this->str = newStr;
+    this->size = newSize;
+
+    return *this;
 }
 
 void String::clear()
