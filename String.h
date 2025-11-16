@@ -36,6 +36,7 @@ public:
     int len();
     bool is_palindrome();
     bool anagram(const String& s);
+    bool is_empty();
 
     friend std::ostream &operator<<(std::ostream &os, const String &s);
 };

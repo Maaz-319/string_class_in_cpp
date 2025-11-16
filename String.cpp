@@ -308,6 +308,11 @@ bool String::anagram(const String &s)
     return true;
 }
 
+bool String::is_empty()
+{
+    return this->size == 0;
+}
+
 void String::clear()
 {
     this->size = 0;
