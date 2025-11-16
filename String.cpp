@@ -145,6 +145,16 @@ String String::lower()
     return temp;
 }
 
+String String::reverse()
+{
+    String temp = *this;
+    for (int i = 0; i < temp.size / 2; i++)
+    {
+        std::swap(temp.str[i], temp.str[temp.size - i - 1]);
+    }
+    return temp;
+}
+
 void String::clear()
 {
     this->size = 0;
