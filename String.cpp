@@ -39,6 +39,19 @@ String &String::operator=(const String &s)
     return *this;
 }
 
+String &String::operator=(const char * c)
+{
+    if (!c)
+        return *this;
+    this->clear();
+    this->size = get_length(c);
+    this->str = new char[this->size + 1];
+    for (int i = 0; i < this->size; i++)
+        this->str[i] = c[i];
+    this->str[this->size] = '\0';
+    return *this;
+}
+
 String String::operator+(const String &s)
 {
     String result;
