@@ -121,6 +121,18 @@ String &String::operator+=(const String &s)
     return *this;
 }
 
+String String::upper()
+{
+    String temp = *this;
+    for (int i = 0; i < temp.size; i++)
+    {
+        char c = temp.str[i];
+        if (c >= 'a' && c <= 'z')
+            temp.str[i] = c & ~32;
+    }
+    return temp;
+}
+
 void String::clear()
 {
     this->size = 0;

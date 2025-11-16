@@ -23,5 +23,16 @@ public:
     String &operator+=(const char *c);
     String &operator+=(const String &s);
 
+    String upper();
+    String lower();
+    String reverse();
+    String capitalize();
+    String reverse_case();
+    String ltrim();
+    String rtrim();
+    String trim();
+    String sort(bool reverse);
+    int len();
+
     friend std::ostream &operator<<(std::ostream &os, const String &s);
 };
