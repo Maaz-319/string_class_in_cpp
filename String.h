@@ -23,6 +23,7 @@ public:
     String &operator+=(const char *c);
     String &operator+=(const String &s);
     bool operator==(const String& s);
+    String operator*(int n);
 
     String upper();
     String lower();
@@ -37,6 +38,8 @@ public:
     bool is_palindrome();
     bool anagram(const String& s);
     bool is_empty();
+    int find(const String& s, bool consider_case = false);
+    int find(const char * c, bool consider_case = false);
 
     friend std::ostream &operator<<(std::ostream &os, const String &s);
 };

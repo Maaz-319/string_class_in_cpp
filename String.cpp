@@ -131,6 +131,13 @@ bool String::operator==(const String &s)
     return true;
 }
 
+String String::operator*(int n)
+{
+    String temp = *this;
+    for(int i = 0; i<n; i++) temp+=(*this);
+    return temp;
+}
+
 String String::upper()
 {
     String temp = *this;
