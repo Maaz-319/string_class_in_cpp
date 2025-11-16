@@ -121,6 +121,16 @@ String &String::operator+=(const String &s)
     return *this;
 }
 
+bool String::operator==(const String &s)
+{
+    for (int i = 0; i < this->size; i++)
+    {
+        if (s.str[i] != this->str[i])
+            return false;
+    }
+    return true;
+}
+
 String String::upper()
 {
     String temp = *this;
@@ -224,7 +234,7 @@ String String::rtrim()
 
     int newSize = end + 1;
 
-    char* new_array = new char[newSize + 1];
+    char *new_array = new char[newSize + 1];
 
     for (int i = 0; i < newSize; i++)
         new_array[i] = temp.str[i];
@@ -278,10 +288,24 @@ String String::sort(bool reverse, bool skip_spaces)
     return temp;
 }
 
-
 int String::len()
 {
     return this->size;
+}
+
+bool String::is_palindrome()
+{
+    return *this == this->reverse();
+}
+
+bool String::anagram(const String &s)
+{
+    char freq1[256] = {0};
+    char freq2[256] = {0};
+    for(int i=0; i<this->size; i++) freq1[this->str[i]]++;
+    for(int i=0; i<s.size; i++) freq2[s.str[i]]++;
+    for(int i=0; i<256; i++) if(freq1[i] != freq2[i]) return false;
+    return true;
 }
 
 void String::clear()

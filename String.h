@@ -22,6 +22,7 @@ public:
     String operator+(const char *c);
     String &operator+=(const char *c);
     String &operator+=(const String &s);
+    bool operator==(const String& s);
 
     String upper();
     String lower();
@@ -33,6 +34,8 @@ public:
     String trim();
     String sort(bool reverse = false, bool skip_spaces = true);
     int len();
+    bool is_palindrome();
+    bool anagram(const String& s);
 
     friend std::ostream &operator<<(std::ostream &os, const String &s);
 };
