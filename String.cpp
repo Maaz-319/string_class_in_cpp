@@ -313,6 +313,76 @@ bool String::is_empty()
     return this->size == 0;
 }
 
+int String::find(const String& pattern, bool consider_case)
+{
+    if (pattern.size == 0 || pattern.size > this->size)
+        return -1;
+
+    for (int i = 0; i <= this->size - pattern.size; i++)
+    {
+        bool match = true;
+
+        for (int j = 0; j < pattern.size; j++)
+        {
+            char c1 = this->str[i + j];
+            char c2 = pattern.str[j];
+
+            if (!consider_case)
+            {
+                if (c1 >= 'A' && c1 <= 'Z') c1 |= 32;
+                if (c2 >= 'A' && c2 <= 'Z') c2 |= 32;
+            }
+
+            if (c1 != c2)
+            {
+                match = false;
+                break;
+            }
+        }
+
+        if (match)
+            return i;
+    }
+
+    return -1;
+}
+
+
+int String::find(const char * c, bool consider_case)
+{
+    int len = get_length(c);
+    if (len == 0 || len > this->size)
+        return -1;
+
+    for (int i = 0; i <= this->size - len; i++)
+    {
+        bool match = true;
+
+        for (int j = 0; j < len; j++)
+        {
+            char c1 = this->str[i + j];
+            char c2 = c[j];
+
+            if (!consider_case)
+            {
+                if (c1 >= 'A' && c1 <= 'Z') c1 |= 32;
+                if (c2 >= 'A' && c2 <= 'Z') c2 |= 32;
+            }
+
+            if (c1 != c2)
+            {
+                match = false;
+                break;
+            }
+        }
+
+        if (match)
+            return i;
+    }
+
+    return -1;
+}
+
 void String::clear()
 {
     this->size = 0;
